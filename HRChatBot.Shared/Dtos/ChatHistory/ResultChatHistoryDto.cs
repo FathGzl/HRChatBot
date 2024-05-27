@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 
-#nullable disable
-
-namespace HRChatBot.WebAPI.Models
+namespace HRChatBot.Shared.Dtos.ChatHistory
 {
-    public partial class ChatHistory
+    public class ResultChatHistoryDto
     {
         public long ChatHistoryId { get; set; }
         public long FromUserId { get; set; }
         public long ToUserId { get; set; }
         public string Message { get; set; }
         public DateTime CreatedDate { get; set; }
-
-        public virtual User FromUser { get; set; }
-        public virtual User ToUser { get; set; }
     }
 }

@@ -5,10 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using HRChatBot.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using HRChatBot.WebAPI.Entities;
+using HRChatBot.WebAPI.Context;
 
 namespace HRChatBot.WebAPI.Controllers
 {

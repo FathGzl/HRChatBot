@@ -3,7 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using HRChatBot.WebAPI.Models;
+using HRChatBot.WebAPI.Entities;
+using HRChatBot.WebAPI.Context;
 
 namespace HRChatBot.WebAPI.Controllers
 {

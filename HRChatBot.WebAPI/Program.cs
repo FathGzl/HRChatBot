@@ -1,9 +1,8 @@
 using System;
 using System.Linq;
 using System.Text;
+using HRChatBot.WebAPI.Context;
 using HRChatBot.WebAPI.Hubs;
-using HRChatBot.WebAPI.Logging;
-using HRChatBot.WebAPI.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -11,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -44,11 +42,11 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddSignalR();
 
-//builder.Services.AddDbContext<HRChatBotContext>(options => options.UseSqlite("Name=HRChatBot"));
+builder.Services.AddDbContext<HRChatBotContext>(options => options.UseSqlite("Name=HRChatBot"));
 //builder.Services.AddDbContextFactory<LoggingHRChatBotContext>(options => options.UseSqlite("Name=HRChatBot"));
 
 
-builder.Services.AddDbContext<HRChatBotContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddDbContext<LoggingHRChatBotContext>(options => options.UseNpgsql(connectionString));
 //builder.Services.AddDbContext<LoggingHRChatBotContext>(options => options.UseNpgsql(connectionString));
 
 builder.Services.AddAuthentication(options =>

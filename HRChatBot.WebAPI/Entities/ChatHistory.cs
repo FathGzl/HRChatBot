@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HRChatBot.Shared.Models
+#nullable disable
+
+namespace HRChatBot.WebAPI.Entities
 {
     public class ChatHistory
     {

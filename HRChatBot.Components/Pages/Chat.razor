@@ -1,6 +1,7 @@
 @page "/chat"
 @page "/chat/{ToUserId}"
 
+@using HRChatBot.Shared.Dtos.ChatHistory
 @using Microsoft.AspNetCore.SignalR.Client
 @using Microsoft.Extensions.Configuration
 @using Microsoft.Extensions.Options
@@ -8,6 +9,7 @@
 @inject NavigationManager _navigationManager
 @inject IJSRuntime _jsRuntime
 @inject HttpClient _httpClient
+@inject IChatHistoryViewModel _chatHistoryViewModel;
 @inject IAccessTokenService _accessTokenService
 @inject ILoginViewModel _loginViewModel
 @inject IProfileViewModel _prolfileViewModel
@@ -65,12 +67,12 @@
         <!--CHAT USER BOX-->
         <div class="panel-footer">
             <div class="input-group" id="myForm">
-                <input id="txtMessageInput" 
-                        @bind="MessageText" 
-                        type="text" 
-                        class="form-control input-sm chat_input"
-                        placeholder="Write your message here..."
-                        @onkeydown="OnKeyDownEvent">
+                <input id="txtMessageInput"
+                       @bind="MessageText"
+                       type="text"
+                       class="form-control input-sm chat_input"
+                       placeholder="Write your message here..."
+                       @onkeydown="OnKeyDownEvent">
             </div>
         </div>
     </div>
@@ -97,7 +99,6 @@
 
         var jwtToken = await _accessTokenService.GetAccessTokenAsync("jwt_token");
         if (jwtToken == null) return;
-
         FromUserId = (await _loginViewModel.GetUserByJWTAsync(jwtToken)).UserId.ToString();
 
         if (Convert.ToInt32(ToUserId) > 0)
@@ -105,14 +106,24 @@
             _prolfileViewModel.UserId = Convert.ToInt64(ToUserId);
             await _prolfileViewModel.GetProfile();
             ToUser = new User
+                {
+                    FirstName = _prolfileViewModel.FirstName,
+                    LastName = _prolfileViewModel.LastName,
+                    EmailAddress = _prolfileViewModel.EmailAddress,
+                };
+            List<ResultChatHistoryDto> chatList = await _chatHistoryViewModel.GetAllChatHistory(ToUserId);
+            foreach (var item in chatList)
             {
-                FirstName = _prolfileViewModel.FirstName,
-                LastName = _prolfileViewModel.LastName,
-                EmailAddress = _prolfileViewModel.EmailAddress,
-            };
+                Messages.Add(new Message
+                    {
+                        FromUserId = item.FromUserId.ToString(),
+                        ToUserId = item.ToUserId.ToString(),
+                        MessageText = item.Message.ToString(),
+                    });
+            }
         }
 
-        var baseAddress = _applicationSettings.Value.BaseAddress; 
+        var baseAddress = _applicationSettings.Value.BaseAddress;
 
         _hubConnection = new HubConnectionBuilder()
                             .WithUrl($"{baseAddress}chathub")
@@ -135,7 +146,7 @@
     {
         if (eventArgs.Code == "Enter" || eventArgs.Code == "NumpadEnter")
         {
-            var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import","./_content/HRChatBot.Components/js/site.js");
+            var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/HRChatBot.Components/js/site.js");
             var messageToBeSent = await module.InvokeAsync<string>("getMessageInput");
             await Send(messageToBeSent);
         }
@@ -151,6 +162,14 @@
             message.MessageText = MessageText;
 
             await _hubConnection.SendAsync("SendMessage", message);
+            await _chatHistoryViewModel.AddChatHistoryAsync(new CreateChatHistoryDto
+                {
+
+                    ToUserId = Convert.ToInt64(ToUserId),
+                    FromUserId = Convert.ToInt64(ToUserId),
+                    Message = MessageText,
+                    CreatedDate = DateTime.Now
+                });
             MessageText = "";
         }
     }

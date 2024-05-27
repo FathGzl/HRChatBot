@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using HRChatBot.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
@@ -14,16 +13,15 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
-using Newtonsoft.Json;
 using System.Net.Http.Json;
-using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using RestSharp.Authenticators;
 using RestSharp;
 using System.Web;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authorization;
+using HRChatBot.WebAPI.Entities;
+using HRChatBot.WebAPI.Context;
 
 namespace HRChatBot.WebAPI.Controllers
 {

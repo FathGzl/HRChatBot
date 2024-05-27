@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace HRChatBot.WebAPI.Models
+namespace HRChatBot.WebAPI.Entities
 {
-    public partial class Log
+    public class Log
     {
         public long LogId { get; set; }
         public string LogLevel { get; set; }

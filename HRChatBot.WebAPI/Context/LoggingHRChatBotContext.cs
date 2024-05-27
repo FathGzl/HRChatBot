@@ -1,6 +1,7 @@
+using HRChatBot.WebAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace HRChatBot.WebAPI.Models
+namespace HRChatBot.WebAPI.Context
 {
     public partial class LoggingHRChatBotContext : DbContext
     {

@@ -10,41 +10,35 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HRChatBot.WebAPI.Migrations
 {
     [DbContext(typeof(HRChatBotContext))]
-    [Migration("20240510112014_UsersAPIMig")]
-    partial class UsersAPIMig
+    [Migration("20240524081510_mig2")]
+    partial class mig2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.1");
 
             modelBuilder.Entity("HRChatBot.WebAPI.Models.ChatHistory", b =>
                 {
                     b.Property<long>("ChatHistoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("chat_history_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ChatHistoryId"));
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("DATE")
                         .HasColumnName("created_date");
 
-                    b.Property<int>("FromUserId")
+                    b.Property<long>("FromUserId")
                         .HasColumnType("INT")
                         .HasColumnName("from_user_id");
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasColumnType("TEXT")
                         .HasColumnName("message");
 
-                    b.Property<int>("ToUserId")
+                    b.Property<long>("ToUserId")
                         .HasColumnType("INT")
                         .HasColumnName("to_user_id");
 
@@ -61,13 +55,11 @@ namespace HRChatBot.WebAPI.Migrations
                 {
                     b.Property<long>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("user_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("UserId"));
-
                     b.Property<string>("AboutMe")
-                        .HasColumnType("text")
+                        .HasColumnType("TEXT")
                         .HasColumnName("about_me");
 
                     b.Property<DateTime>("CreatedDate")
@@ -75,7 +67,7 @@ namespace HRChatBot.WebAPI.Migrations
                         .HasColumnName("created_date");
 
                     b.Property<long?>("DarkTheme")
-                        .HasColumnType("bigint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("dark_theme");
 
                     b.Property<DateTime>("DateOfBirth")
@@ -84,41 +76,41 @@ namespace HRChatBot.WebAPI.Migrations
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasColumnType("TEXT")
                         .HasColumnName("email_address");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text")
+                        .HasColumnType("TEXT")
                         .HasColumnName("first_name");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text")
+                        .HasColumnType("TEXT")
                         .HasColumnName("last_name");
 
                     b.Property<long?>("Notifications")
-                        .HasColumnType("bigint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("notifications");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasColumnType("TEXT")
                         .HasColumnName("password");
 
                     b.Property<string>("ProfilePicDataUrl")
-                        .HasColumnType("text")
+                        .HasColumnType("TEXT")
                         .HasColumnName("profile_pic_data_url");
 
                     b.Property<string>("ProfilePictureUrl")
-                        .HasColumnType("text")
+                        .HasColumnType("TEXT")
                         .HasColumnName("profile_picture_url");
 
                     b.Property<string>("Role")
-                        .HasColumnType("text")
+                        .HasColumnType("TEXT")
                         .HasColumnName("role");
 
                     b.Property<string>("Source")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasColumnType("TEXT")
                         .HasColumnName("source");
 
                     b.HasKey("UserId");

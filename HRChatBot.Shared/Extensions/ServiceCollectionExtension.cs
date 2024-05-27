@@ -40,6 +40,7 @@ namespace HRChatBot.Shared.Extensions
             // authentication http clients
             services.AddHttpClient<ILoginViewModel, LoginViewModel>("LoginViewModelClient", clientConfigurator);
             services.AddHttpClient<IRegisterViewModel, RegisterViewModel>("RegisterViewModelClient", clientConfigurator);
+            services.AddHttpClient<IChatHistoryViewModel, ChatHistoryViewModel>("ChatHistoryViewModel", clientConfigurator);
 
             // logging
             services.AddLogging(logging => logging.SetMinimumLevel(LogLevel.Error));

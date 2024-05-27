@@ -1,8 +1,9 @@
+using HRChatBot.WebAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace HRChatBot.WebAPI.Models
+namespace HRChatBot.WebAPI.Context
 {
     public partial class HRChatBotContext : DbContext
     {

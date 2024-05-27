@@ -1,4 +1,4 @@
-using HRChatBot.WebAPI.Models;
+using HRChatBot.WebAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
