@@ -10,6 +10,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRChatBot.WebAPI", "HRChatB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRChatBot.Components", "HRChatBot.Components\HRChatBot.Components.csproj", "{14ABE269-57C6-4755-9D3A-E5717DB66E23}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CDC18388-8169-42BF-85D2-8B546AC8580D}"
+	ProjectSection(SolutionItems) = preProject
+		ChatBotNot.txt = ChatBotNot.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

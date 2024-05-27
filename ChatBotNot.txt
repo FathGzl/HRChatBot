@@ -1,0 +1,8 @@
+CRUD Ýþlemleri için herhangi bir pattern kullanýlmamýþ.(Repository Pattern veya CORS Pattern,Madiator Pattern)
+Transaction için herhangi bir kontrol yok unitofwork kullanýlabilirdi
+Solid aykýrý durumlar metotlar ve propertyler ve validator iþlemleri ayný classda örnek LoginViewModel solid aykýrý
+Shared dosyasýnda extension metotlar için configurasyonlar var aynýsý api içinde yapýlabilirdi örnek ServiceCollectionExtension
+ViewModels klasöründe concrate ve interfasler ayný yerde viewmodelden çýkarýlýp.concrate ve interfaces olarak ayrý klasörde tutardým.
+Entityler üzerinde insert update ve listeleme yapýlmýþ onlarý dtolar üzerinde yapýlmasý daha doðru solid aykýrý bir durum .
+dtolarý ve entityleri eþleþtirmek için automapper kullanýlabilirdi.
+HRChatBot.Components bu katmanda blazor kullanýlmýþ yapýyý çok bilmediðim için burada herhani yorum yapmýyorum.
