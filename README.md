@@ -1,16 +1,8 @@
-# HRChatBot Nedir, Ne işe Yarar?
-İnsan Kaynakları profesyonelleri ile adaylar arasında bir ön mülakat yapılmasını sağlayarak işe alım sürecini daah etkin hale getirmeyi amaçlar.
-
-# Kurulum Aşamaları
-Veritabanı olarak PostgreSql kurulumu yapılmalıdır. Ardından migration yapılarak db tarafında tüm tablolar oluşturulmalıdır. 
-
-## Veritabanı oluşturulması 
-	Db linki WebAPI projesinde appsettings ConnectionString WebApiDatabase parametresi kullanılmalıdır. (Veritabanı oluşturulması ve migration yapılması gereklidir.)
-
-## Migration 
-dotnet ef migrations add <nameForYourMigration> --project HRChatBot.WebAPI --context HRChatBotContext
-dotnet ef database update --project HRChatBot.WebAPI --context HRChatBotContext
-
-
-## Proje nasıl çalıştırılır?
-Client ve WEBAPI projeleri Solution üzerinde multiple Startup seçilerek Start edilebilmektedir.
+CRUD İşlemleri için herhangi bir pattern kullanılmamış.(Repository Pattern veya CORS Pattern,Madiator Pattern)
+Transaction için herhangi bir kontrol yok unitofwork kullanılabilirdi
+Solid aykırı durumlar metotlar ve propertyler ve validator işlemleri aynı classda örnek LoginViewModel solid aykırı
+Shared dosyasında extension metotlar için configurasyonlar var aynısı api içinde yapılabilirdi örnek ServiceCollectionExtension
+ViewModels klasöründe concrate ve interfasler aynı yerde viewmodelden çıkarılıp.concrate ve interfaces olarak ayrı klasörde tutardım.
+Entityler üzerinde insert update ve listeleme yapılmış onları dtolar üzerinde yapılması daha doğru solid aykırı bir durum .
+dtoları ve entityleri eşleştirmek için automapper kullanılabilirdi.
+HRChatBot.Components bu katmanda blazor kullanılmış yapıyı çok bilmediğim için burada herhani yorum yapmıyorum.
